@@ -27,7 +27,12 @@ jobs:
       run: mvn -B package --file pom.xml 
       
     - name: 4 Run Unit Tests
-      run: mvn test  
+      run: mvn -B test --file pom.xml 
+    - name: 4.5 Unit Test Report
+      uses: mikepenz/action-junit-report@v3
+      if: always() # always run even if the previous step fails
+      with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
       
     - name: 5 copy jar files
       run: mkdir staging && cp target/*.jar staging   
@@ -55,4 +60,6 @@ jobs:
           files: |
             LICENSE.txt
             *.jar     
+            
+            
         
