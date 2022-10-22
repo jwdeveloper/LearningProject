@@ -48,9 +48,10 @@ jobs:
       if: always() # always run even if the previous step fails test
       with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
+          include_passed: true
       
     - name: 5 copy jar files
-      run: mkdir staging && cp target/*.jar staging && cp **/build/test-results/test/TEST-*.xml staging 
+      run: mkdir staging && cp target/*.jar staging 
       
     - name: 6 set up a cache for maven
       uses: actions/cache@v2
