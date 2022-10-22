@@ -49,14 +49,26 @@ jobs:
       with:
          name: github-actions-artifacts
          path: staging
+    - name: 7.5 Create Versions
+      id: version
+      uses: PaulHatch/semantic-version@v4.0.2
+      with:
+          tag_prefix: "v"
+          major_pattern: "maj"
+          minor_pattern: "min"
+          format: "${major}.${minor}.${patch}"
+          namespace: develop
+          change_path: "."
+          short_tags: false
+          bump_each_commit: true   
          
     - name:  8 Create Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: ${{ steps.version.outputs.version_tag }}
           prerelease: true
-          title: "Development Build"
+          title: ${{ steps.version.outputs.version_tag }} Build
           files: |
               staging/*.jar
             
