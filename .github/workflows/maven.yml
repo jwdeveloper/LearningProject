@@ -55,7 +55,8 @@ jobs:
           namespace: develop
           change_path: "."
           short_tags: false
-          bump_each_commit: true        
+          bump_each_commit: false
+          search_commit_body: true
          
     - name: 7 Create Artifacts
       uses: actions/upload-artifact@v2
