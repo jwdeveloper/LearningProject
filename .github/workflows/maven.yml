@@ -38,10 +38,10 @@ jobs:
           bump_each_commit: false    
         
     - name: 3 Build with Maven
-      run: mvn -B package -Dname=TestingProject -Dversion=1.0.0 --file pom.xml 
+      run: mvn -B package -Dname=TestingProject -Dversion=${{steps.version.outputs.version_tag}} --file pom.xml 
       
     - name: 4 Run Unit Tests
-      run: mvn -B test --file pom.xml 
+      run: mvn -B test -Dname=TestingProject -Dversion=${{steps.version.outputs.version_tag}} --file pom.xml 
       
     - name: 4.5 Unit Test Report
       uses: mikepenz/action-junit-report@v3
