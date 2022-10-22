@@ -38,7 +38,7 @@ jobs:
           bump_each_commit: false    
         
     - name: 3 Build with Maven
-      run: mvn -B package -Dversion=TestingProject -Dname.version= ${{ steps.version.outputs.version_tag }} --file pom.xml 
+      run: mvn -B package -Dname=TestingProject -Dversion= ${{steps.version.outputs.version_tag}} --file pom.xml 
       
     - name: 4 Run Unit Tests
       run: mvn -B test --file pom.xml 
