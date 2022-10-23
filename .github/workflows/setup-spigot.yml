@@ -27,6 +27,12 @@ jobs:
   setup-spigot:
      runs-on: ubuntu-latest
      steps:
+      - name: Cache Server files
+        id: cache-primes
+        uses: actions/cache@v3
+        with:
+           path: ${{inputs.path}}
+           key: ${{ runner.os }}- ${{inputs.path}}
       - name: Download Spigot Server ${{inputs.version}}
         run: mkdir ${{inputs.path}} && curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o ${{inputs.path}}/spigot.jar
   run-spigot: 
