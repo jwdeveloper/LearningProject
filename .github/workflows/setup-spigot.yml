@@ -7,17 +7,14 @@ on:
    workflow_dispatch:
     inputs:
       version:
-        required: false
+        required: true
         type: number
-        default: 1.19    
-   workflow_call:
-    inputs:
-      version:
-        required: false
+        default: 1.19   
+      path:
+        required: true
         type: string
-      path:   
-        required: false
-        type: string
+        default: server     
+
 jobs:
   setup-java:
      runs-on: ubuntu-latest
@@ -31,7 +28,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - name: Download Spigot Server ${{inputs.version}}
-        run: curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o server/spigot.jar
+        run: mkdir ${{inputs.path}} && curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o ${{inputs.path}}/spigot.jar
   run-spigot: 
      needs: [setup-java, setup-spigot]
      runs-on: ubuntu-latest
