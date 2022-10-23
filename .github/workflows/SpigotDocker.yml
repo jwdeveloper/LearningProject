@@ -7,7 +7,7 @@ on:
         type: number
         default: 1.19  
 jobs:
-  node-docker:
+  spigot-docker:
     runs-on: ubuntu-latest
     container:
       image: nimmis/spigot
@@ -16,3 +16,6 @@ jobs:
         SPIGOT_VER: ${{inputs.version}}
       ports:
         - 80
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)     
