@@ -4,6 +4,11 @@
 name: Setup Spigot
 
 on:
+   workflow_dispatch:
+    inputs:
+      version:
+        required: false
+        type: string
    workflow_call:
     inputs:
       version:
