@@ -30,11 +30,11 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - name: Download Spigot Server ${{inputs.version}}
-        run: curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o server
+        run: curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o server/spigot.jar
   run-spigot: 
      needs: [setup-java, setup-spigot]
      runs-on: ubuntu-latest
      steps:
       - name: Run server
-        run: echo Hello world
+        run: java server/spigot.jar
  
