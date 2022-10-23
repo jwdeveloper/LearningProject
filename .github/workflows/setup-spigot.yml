@@ -1,0 +1,35 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+name: Setup Spigot
+
+on:
+   workflow_call:
+    inputs:
+      version:
+        required: false
+        type: string
+      path:   
+        required: false
+        type: string
+jobs:
+  setup-java:
+     runs-on: ubuntu-latest
+     steps:
+     - uses: actions/setup-java@v3
+       with:
+        distribution: 'temurin'
+        java-version: '17'
+        check-latest: true
+  setup-spigot:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Download a file
+        run: curl https://download.getbukkit.org/spigot/spigot-${{version}}.jar -o  ${{path}}
+  run-spigot: 
+     needs: [setup-java, setup-spigot]
+     runs-on: ubuntu-latest
+     steps:
+      - name: Run server
+        run: echo Hello world
+ 
