@@ -29,8 +29,8 @@ jobs:
   setup-spigot:
      runs-on: ubuntu-latest
      steps:
-      - name: Download a file
-        run: curl https://download.getbukkit.org/spigot/spigot-${{version}}.jar -o  ${{path}}
+      - name: Download Spigot Server ${{inputs.version}}
+        run: curl https://download.getbukkit.org/spigot/spigot-${{inputs.version}}.jar -o server
   run-spigot: 
      needs: [setup-java, setup-spigot]
      runs-on: ubuntu-latest
