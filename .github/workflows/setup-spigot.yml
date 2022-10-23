@@ -34,5 +34,5 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - name: Run server
-        run: java server/spigot.jar
+        run: cd ${{inputs.path}} && java -Xmx1G -jar spigot.jar
  
