@@ -33,6 +33,10 @@ jobs:
      needs: [setup-java, setup-spigot]
      runs-on: ubuntu-latest
      steps:
+      - name: Show git files
+        run: ls ${{ github.workspace }}
+      - name: Now files
+        run: ls ${{inputs.path}}
       - name: Run server
         run: cd ${{inputs.path}} && java -Xmx1G -jar spigot.jar
  
