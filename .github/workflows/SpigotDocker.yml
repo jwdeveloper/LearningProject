@@ -18,13 +18,13 @@ jobs:
         - 80
     steps:
       - name: download java
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
           check-latest: true
       - name: download python
-      - uses: actions/setup-python@v4
+        uses: actions/setup-python@v4
         with:
          python-version: '3.9'   
       - name: Check for dockerenv file
