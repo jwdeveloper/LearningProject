@@ -50,7 +50,7 @@ jobs:
         access-token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: 5 copy jar files
-      run: mkdir staging && cp target/JW_Instruments-${{steps.version.outputs.version_tag}}-shaded.jar staging 
+      run: mkdir staging && cp target/*.jar staging 
       
     - name: 6 set up a cache for maven
       uses: actions/cache@v2
